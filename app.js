@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require('mongoose');
 const _ = require('lodash');
+require("dotenv").config()
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -13,7 +14,8 @@ app.use(express.static("public"));
 
 
 //mongoose.connect("mongodb+srv://deepanshu00730:DyAg%40300702@cluster0.xl8jxyj.mongodb.net/todolistDB").then(function () {
-mongoose.connect("mongodb://127.0.0.1:27017/vlogDB").then(function () {
+
+mongoose.connect(process.env.MONGODB_URI).then(function () {
 
 	console.log("Connection Successful");
 }).catch(function (err) {
@@ -135,7 +137,7 @@ app.post("/compose", function (req, res) {
 	// res.redirect("/");
 });
 
-
-app.listen(3000, function () {
+const port = process.env.PORT || 3000
+app.listen(port, function () {
 	console.log("Server started on port 3000");
 });

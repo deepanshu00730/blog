@@ -12,9 +12,6 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-
-//mongoose.connect("mongodb+srv://deepanshu00730:DyAg%40300702@cluster0.xl8jxyj.mongodb.net/todolistDB").then(function () {
-
 mongoose.connect(process.env.MONGODB_URI).then(function () {
 
 	console.log("Connection Successful");
